@@ -8,7 +8,7 @@ export default class AccountsBalance extends Component {
         super(props)
         this.state.accounts = [] 
 
-        // this.componentDidMount = this.componentDidMount.bind(this)
+        this.componentDidMount = this.componentDidMount.bind(this)
 
     }
 
@@ -18,6 +18,7 @@ export default class AccountsBalance extends Component {
             try {
                 await Axios.get("http://192.168.0.2/api/accounts")
                 .then ((response) => {
+                    // console.log(response)
                     this.setState({accounts: response.data})
                 })
             }
@@ -30,33 +31,23 @@ export default class AccountsBalance extends Component {
 
 
     render() {
-
-        // const data = this.state.accounts
-        // console.log("--")
-        // // console.log(data)
-        // console.log("--")
-
-        const data = [{title:"Сбербанк"}, {title:"Альфабанк"}]
-        console.log(data)
+        const data = this.state.accounts
 
         const accountsList = data.map((account) => {
-                <li>{account.title}</li>
+            // return <li>{account.title}<br />{account.current_amount}</li>
+            return (
+                <div key={account.id} className="card" style={{width: 250}}>
+                    <div className="card-body">
+                        <h5 className="card-title">{account.title}</h5>
+                        <span>{account.current_amount}</span>
+                    </div>
+            </div>)
+
         } )
-
-
-            // <div className="card row" style={{width: 250}}>
-            //     <div className="card-body">
-            //         <h5 class="card-title">{account.title}</h5>
-            //         <span>{account.current_amount}</span>
-            //     </div>
-            // </div>
-
         return (
-                <ul>
-                {accountsList}
-                </ul>
-
-   
+                <div className="accounts-balance-list">
+                    {accountsList}
+                </div>
         )
     }
 }

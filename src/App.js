@@ -10,6 +10,7 @@ import AccountsBalance from './components/AccountsBalance';
 function App() {
   return (
     <div className="App">
+      <div className="container">
 
       <div className="row">
         <div className="col">
@@ -18,7 +19,7 @@ function App() {
       </div>
 
       <div className="row">
-          <AccountsBalance />
+        <AccountsBalance />
       </div>
 
 
@@ -29,9 +30,12 @@ function App() {
         <OperationAddForm />
         </div>
         <div className="col">
+        <h1>Транзакции</h1>
         <Operations />
         </div>
       </div>
+    </div>
+
     </div>
   );
 }

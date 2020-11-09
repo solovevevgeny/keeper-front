@@ -1,3 +1,7 @@
 .App {
   padding: 10px;
 }
+
+.accounts-balance-list {
+	display: flex;
+}

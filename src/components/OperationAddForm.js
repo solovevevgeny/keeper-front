@@ -3,7 +3,9 @@ import axios from "axios"
 
 export default class OperationAddForm extends Component{
 
-    state = {}
+    state = {
+        isLoading: false
+    }
 
     constructor(props) {
         super(props)
@@ -25,6 +27,7 @@ export default class OperationAddForm extends Component{
     }
 
     submitHandler(event) {
+        this.setState({isLoading: true})
         event.preventDefault();
 
         console.log(this.state)
@@ -37,14 +40,21 @@ export default class OperationAddForm extends Component{
             comment: this.state.comment
         }
 
-        // console.log(data)
 
               axios({
             method: 'post',
             url: 'http://192.168.0.2/api/operations',
-            data: data
+            data: data,
+            validateStatus: () => true
         })
         .then ((response) => {
+            console.log(response.status)
+            if (response.status == 201) {
+                console.log("added OK: 201")
+                this.setState({isLoading: false})
+                console.log(this.state)
+            }
+
             console.log(response)
         })
         .catch (function(error) {
@@ -52,7 +62,17 @@ export default class OperationAddForm extends Component{
         })
     }
 
+    
     render() {
+        const Spinner = (isLoading) => {
+            return (
+                <div>
+                    <span hidden={isLoading} class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="sr-only">Loading...</span>
+                </div>
+            )
+        }
+
         return (
             <>
             <form>
@@ -78,10 +98,11 @@ export default class OperationAddForm extends Component{
 
                 <label hmtlfor="account_to_id">Куда</label>
                     <select className="form-control" name="account_to_id" onChange={this.changeHandler}>
-                    <option value=""></option>
-                    <option>Альфабанк</option>
-                    <option>Сбербанк</option>
-                    <option>ВТБ</option>
+                    <option value="0"></option>
+                    <option value="1">Альфабанк</option>
+                    <option value="2">Сбербанк</option>
+                    <option value="3">ВТБ</option>
+                    <option value="4">Кошелек</option>
                 </select>
 
                     <label hmtlfor="amount" value={this.state.amount}>Сумма</label>
@@ -92,6 +113,7 @@ export default class OperationAddForm extends Component{
 
                     <button className="btn btn-success" type="submit" onClick={this.submitHandler}>Записать</button>
 
+                    { Spinner(!this.state.isLoading) }
             </form>
             </>
         )
