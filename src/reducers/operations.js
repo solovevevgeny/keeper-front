@@ -1,12 +1,20 @@
 export default function () {
     return [
         {
-            title: "Сбербанк",
-            current_amount: 1000
+            id: 1,
+            type: "Add",
+            account_from_id: null,
+            account_to_id: 1,
+            comment: "пополнение Сбербанка на 1000",
+            amount: 1000
         },
         {
-            title: "Альфабанк",
-            current_amount: 2000
+            id: 2,
+            type: "Add",
+            account_from_id: 1,
+            comment: "пополнение Сбербанка на 2000",
+            amount: 2000
         },
+
     ]
 }

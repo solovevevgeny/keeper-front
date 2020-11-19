@@ -12,25 +12,24 @@ function App() {
     <div className="App">
       <div className="container">
 
-      <div className="row">
+      <div className="row pt-20">
         <div className="col">
           <Balance />
         </div>
       </div>
 
-      <div className="row">
-        <AccountsBalance />
+      <div className="row pt-20">
+        <div class="col">
+          <AccountsBalance />
+        </div>
       </div>
 
-
-
-      <div className="row">
-        <div className="col">
-          <h1>Добавить операцию</h1>
+        <div className="row pt-20">
+        <div className="col ">
+          
         <OperationAddForm />
         </div>
         <div className="col">
-        <h1>Транзакции</h1>
         <Operations />
         </div>
       </div>

@@ -1,48 +1,24 @@
 import { Component } from "react";
-import axios from "axios"
 
+import {connect} from "react-redux"
 
-export default class Balance extends Component {
-    state = {}
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            balance: 0
-        }
-        this.componentDidMount = this.componentDidMount.bind(this)
-    }
-
-    componentDidMount() {
-
-        const sendRequest = async () => {
-            try {
-                await axios.get("http://192.168.0.2/api/accounts/total")
-                .then((response) => {
-                    this.setState({ balance: response.data.totalBalance })
-                })
-
-            }
-            catch (error) {
-                console.log(error)
-            }
-
-
-        }
-        sendRequest()
-
-    }
-
+ class Balance extends Component {
     render() {
         return(
-            <div className="card">
+            <div className="radius shadow bg-white">
                 <div className="card-body">
-                    <h5>Баланс</h5>
-                    {this.state.balance}
+                    <h5>Баланс </h5>
+                    {this.props.balance[0].balance.toLocaleString()}&#8381;
                 </div>
             </div>
-               
         )
     }
-
 }
+
+function mapStateToProps(state) {
+    return {
+        balance: state.balance
+    }
+}
+
+export default connect(mapStateToProps)(Balance)

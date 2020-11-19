@@ -1,7 +1,74 @@
+@import '~antd/dist/antd.css';
+
 .App {
   padding: 10px;
+  font-size: 14px;
+  font-family: Tahoma;
+  background: #f0f0f0;
+  color: #727272;
+  height: 100%;
+}
+
+h1, h2, h3, h4 {
+  color: #465ea0;
+  padding-bottom:10px;
 }
 
 .accounts-balance-list {
 	display: flex;
+}
+
+.shadow {
+-webkit-box-shadow: 1px 1px 20px 0px rgba(0,0,0,0.05);
+-moz-box-shadow: 1px 1px 20px 0px rgba(0,0,0,0.05);
+box-shadow: 1px 1px 20px 0px rgba(0,0,0,0.05);
+}
+
+.radius {
+  border-radius: 8px;
+}
+
+.balances {
+  padding:0px;
+  margin:0px;
+  background: #fff;
+  padding: 20px;
+  
+
+}
+
+.balances-item {
+  margin-right: 20px;
+  padding:20px;
+}
+
+.balances-item-title {
+  color: #00A146;
+}
+
+.pt-20 {
+  margin-top: 20px;
+}
+
+.bg-white {
+  background: #fff;
+}
+
+
+.operations {
+  padding: 20px;
+}
+
+.operations-list {
+  padding:0px;
+  list-style-type: none;
+}
+
+.operations-list-item  {
+  font-size:14px;
+  color: #000;
+}
+
+.form  {
+  padding:20px
 }
